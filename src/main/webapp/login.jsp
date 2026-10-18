@@ -12,7 +12,16 @@
         <div class="row justify-content-center">
             <div class="col-md-4">
                 <h3 class="text-center mb-4">Iniciar sesión</h3>
-                <form action="#" method="post">
+                
+                <!-- BLOQUE PARA MOSTRAR ERROR -->
+                <% if(request.getAttribute("error") != null) { %>
+                    <div class="alert alert-danger text-center" role="alert">
+                        <%= request.getAttribute("error") %>
+                    </div>
+                <% } %>
+                <!-- -->
+
+                <form action="ServletLogin" method="post">
                     <div class="mb-3">
                         <label for="usuario" class="form-label">Usuario</label>
                         <input type="text" class="form-control" id="usuario" name="usuario" required>
