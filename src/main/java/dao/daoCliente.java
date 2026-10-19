@@ -3,6 +3,9 @@ package dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+
 import entidades.Cliente;
 
 public class daoCliente {
@@ -40,5 +43,53 @@ public class daoCliente {
             e.printStackTrace();
         }
         return estado;
+    }
+    
+    public ArrayList<Cliente> listarClientes()
+    {
+        ArrayList<Cliente> listaClientes = new ArrayList<Cliente>();
+
+        String query = "SELECT * FROM clientes";
+
+        try
+        {
+            Class.forName("com.mysql.jdbc.Driver");
+
+            Connection conexion =
+                    DriverManager.getConnection(host, user, pass);
+
+            PreparedStatement statement =
+                    conexion.prepareStatement(query);
+
+            ResultSet rs = statement.executeQuery();
+
+            while(rs.next())
+            {
+                Cliente cliente = new Cliente();
+
+                cliente.setDni(rs.getString("dni"));
+                cliente.setCuil(rs.getString("cuil"));
+                cliente.setNombre(rs.getString("nombre"));
+                cliente.setApellido(rs.getString("apellido"));
+                cliente.setSexo(rs.getString("sexo"));
+                cliente.setFechaNacimiento(rs.getString("fecha_nacimiento"));
+                cliente.setDireccion(rs.getString("direccion"));
+                cliente.setNacionalidad(rs.getString("nacionalidad"));
+                cliente.setLocalidad(rs.getString("localidad"));
+                cliente.setProvincia(rs.getString("provincia"));
+                cliente.setCorreoElectronico(rs.getString("correo_electronico"));
+                cliente.setTelefono(rs.getString("telefono"));
+
+                listaClientes.add(cliente);
+            }
+
+            conexion.close();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        return listaClientes;
     }
 }

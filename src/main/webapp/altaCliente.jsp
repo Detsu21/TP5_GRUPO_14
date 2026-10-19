@@ -13,7 +13,7 @@
         <nav class="bg-primary text-white p-3" style="width: 220px; flex-shrink: 0;">
             <h5 class="text-center mb-4">Menú</h5>
             <a href="altaCliente.jsp" class="d-block text-white text-decoration-none bg-dark rounded p-2 mb-2">Alta de Cliente</a>
-            <a href="#" class="d-block text-white text-decoration-none p-2">Listado de Clientes</a>
+            <a href="ServletCliente" class="d-block text-white text-decoration-none p-2">Listado de Clientes</a>
         </nav>
 
         <main class="container-fluid p-4">

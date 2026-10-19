@@ -1,6 +1,8 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -48,5 +50,16 @@ public class ServletCliente extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/altaCliente.jsp");
             dispatcher.forward(request, response);
         }
+    }
+    
+    protected void doGet(HttpServletRequest request,HttpServletResponse response)throws ServletException, IOException {
+
+    	negCliente negocio = new negCliente();
+
+    	ArrayList<Cliente> lista = negocio.listarClientes();
+
+    	request.setAttribute("listaClientes", lista);
+
+    	request.getRequestDispatcher("listadoClientes.jsp").forward(request, response);
     }
 }
