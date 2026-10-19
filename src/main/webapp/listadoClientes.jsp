@@ -18,6 +18,19 @@
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
 	rel="stylesheet">
+<script type="text/javascript">
+	$(document)
+			.ready(
+					function() {
+						$('#tablaClientes')
+								.DataTable(
+										{
+											language : {
+												url : 'https://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json'
+											}
+										});
+					});
+</script>
 </head>
 <body class="bg-light">
 	<div class="d-flex min-vh-100">
@@ -51,6 +64,10 @@
 				ArrayList<Cliente> listaClientes = (ArrayList<Cliente>) request.getAttribute("listaClientes");
 				%>
 			</p>
+
+			<h3>
+				Listado de Clientes (<%=listaClientes.size()%>)
+			</h3>
 			<form action="ServletCliente" method="get"
 				class="border rounded bg-white p-3">
 				<table id="tablaClientes" class="display">
